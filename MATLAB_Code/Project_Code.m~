@@ -1,0 +1,10 @@
+%Get Video Data
+VideoData = VideoReader('SampleVideos/car12.mov');
+
+%Load Video Data Into an Array
+First  = read(obj)
+
+%Read an Image
+TestCellImage = imread('SampleImages/spatia8.gif');
+%Find Edges in that Image
+BW = edge(TestCellImage);
