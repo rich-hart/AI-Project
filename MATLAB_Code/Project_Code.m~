@@ -1,10 +1,14 @@
 %Get Video Data
 VideoData = VideoReader('SampleVideos/car12.mov');
 
-%Load Video Data Into an Array
-First  = read(obj)
+%Read the first frame from the video
+FirstFrame = read(VideoData,1);
 
-%Read an Image
-TestCellImage = imread('SampleImages/spatia8.gif');
-%Find Edges in that Image
-BW = edge(TestCellImage);
+%Convert Image to GrayScale
+GrayScaleImage = rgb2gray(FirstFrame);
+
+%find edges
+BW_Edges=edge(GrayScaleImage);
+
+%find corners
+corner_positions=corner(GrayScaleImage);
