@@ -1,3 +1,4 @@
+clear all
 %creating a figure object that will overlay the cell image data and 
 %information gathered during image processing .e.g points of interest. 
 figure;
@@ -6,8 +7,12 @@ figure;
 video_data = VideoReader('SampleVideos/car12.mov');
 
 %preallocating memory for image processing
-mov(1:video_data.NumberOfFrames) = struct('cdata',[],'colormap',[]);
 
+%note that corner points vide has to be color because points are rendered
+%yellow
+corner_point_mov(1:video_data.NumberOfFrames) = struct('cdata',[],'colormap',[]);
+
+edge_mov(1:video_data.NumberOfFrames) = struct('cdata',[],'colormap',[]);
 
 for i=1:video_data.NumberOfFrames
     
@@ -18,8 +23,9 @@ Frame = read(video_data,i);
 gray_scale_image = rgb2gray(Frame);
 
 %find edges
-%BW_Edges=edge(GrayScaleImage);
-
+bw_edges=edge(gray_scale_image);
+gray_scale_edge_video=mat2gray(bw_edges);
+gray_scale_edge_video=im2uint8(gray_scale_edge_video);
 %find corners
 corner_positions=corner(gray_scale_image);
 
@@ -35,10 +41,13 @@ corner_positions=corner(gray_scale_image);
     
     %load the image and data associated with it from the frame into the
     %movie structure
-    mov(i)=getframe;
-    
+    corner_point_mov(i)=getframe;
+    edge_mov(i)= im2frame(gray_scale_edge_video,gray);
 end
 
-
+figure;
 %play the movie 
-movie(mov,2,15);
+movie(corner_point_mov,2,15);
+
+figure;
+movie(edge_mov,2,15);
