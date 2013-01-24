@@ -26,10 +26,11 @@ for i = 1:m
      VideoFrame(x,y,2)=0;
       VideoFrame(x,y,3)=0;
 end
-f =im2frame( VideoFrame);
-MovieFrames(n)=f;
+
 end
 
-movie(MovieFrames);
+imshow(VideoFrame);
+
+
 
 %figure; imshow(VideoFrame);
