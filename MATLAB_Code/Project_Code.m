@@ -1,33 +1,44 @@
+%creating a figure object that will overlay the cell image data and 
+%information gathered during image processing .e.g points of interest. 
+figure;
 
-   figure;
-%Get Video Data
-VideoData = VideoReader('SampleVideos/car12.mov');
-F(1:VideoData.NumberOfFrames) = struct('cdata',[],'colormap',[]);
-for i=1:VideoData.NumberOfFrames
-%Read the first frame from the video
-FirstFrame = read(VideoData,i);
+%Loading Video Data into a structure
+video_data = VideoReader('SampleVideos/car12.mov');
+
+%preallocating memory for image processing
+mov(1:video_data.NumberOfFrames) = struct('cdata',[],'colormap',[]);
+
+
+for i=1:video_data.NumberOfFrames
+    
+%Read the frame from the video
+Frame = read(video_data,i);
 
 %Convert Image to GrayScale
-GrayScaleImage = rgb2gray(FirstFrame);
+gray_scale_image = rgb2gray(Frame);
 
 %find edges
-BW_Edges=edge(GrayScaleImage);
+%BW_Edges=edge(GrayScaleImage);
 
 %find corners
-corner_positions=corner(GrayScaleImage);
+corner_positions=corner(gray_scale_image);
 
- 
+%show the image on the figure and do not shut of renderer
+ imshow(gray_scale_image); hold on 
 
- imshow(GrayScaleImage); hold on 
 
-
-  % Overlay valid interest points
+  % Overlay valid interest points on grayscaleimage
     plot(corner_positions(:,1), corner_positions(:,2), 'y.');
     
+    %turn off renderer.
     hold off;
     
-    F(i)=getframe;
+    %load the image and data associated with it from the frame into the
+    %movie structure
+    mov(i)=getframe;
     
 end
 
-movie(F,2,15);
+
+%play the movie 
+movie(mov,2,15);

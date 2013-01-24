@@ -1,23 +1,29 @@
+%creating a figure object that will overlay the cell image data and 
+%information gathered during image processing .e.g points of interest. 
+figure;
 
-   figure;
-%Get Video Data
+%Loading Video Data into a structure
 VideoData = VideoReader('SampleVideos/car12.mov');
-F = cell(1;
+
+%preallocating memory for image processing
+F(1:VideoData.NumberOfFrames) = struct('cdata',[],'colormap',[]);
+
+
 for i=1:VideoData.NumberOfFrames
-%Read the first frame from the video
-FirstFrame = read(VideoData,i);
+    
+%Read the frame from the video
+Frame = read(VideoData,i);
 
 %Convert Image to GrayScale
-GrayScaleImage = rgb2gray(FirstFrame);
+GrayScaleImage = rgb2gray(Frame);
 
 %find edges
-BW_Edges=edge(GrayScaleImage);
+%BW_Edges=edge(GrayScaleImage);
 
 %find corners
 corner_positions=corner(GrayScaleImage);
 
- 
-
+%show the image on the figure and d
  imshow(GrayScaleImage); hold on 
 
 
@@ -30,4 +36,4 @@ corner_positions=corner(GrayScaleImage);
     
 end
 
-movie(F);
+movie(F,2,15);
