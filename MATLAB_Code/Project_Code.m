@@ -2,7 +2,7 @@
    figure;
 %Get Video Data
 VideoData = VideoReader('SampleVideos/car12.mov');
-
+F(1:VideoData.NumberOfFrames) = struct('cdata',[],'colormap',[]);
 for i=1:VideoData.NumberOfFrames
 %Read the first frame from the video
 FirstFrame = read(VideoData,i);
@@ -30,4 +30,4 @@ corner_positions=corner(GrayScaleImage);
     
 end
 
-movie(F);
+movie(F,2,15);

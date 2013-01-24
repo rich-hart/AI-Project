@@ -1,8 +1,11 @@
+
+   figure;
 %Get Video Data
 VideoData = VideoReader('SampleVideos/car12.mov');
-
+F = cell(1;
+for i=1:VideoData.NumberOfFrames
 %Read the first frame from the video
-FirstFrame = read(VideoData,1);
+FirstFrame = read(VideoData,i);
 
 %Convert Image to GrayScale
 GrayScaleImage = rgb2gray(FirstFrame);
@@ -13,14 +16,18 @@ BW_Edges=edge(GrayScaleImage);
 %find corners
 corner_positions=corner(GrayScaleImage);
 
-[m,n] = size(corner_positions);
+ 
 
-for i = 1:m
-   x=corner_positions(m,1);
-   y=corner_positions(m,2);
-   GrayScaleImage(x,y)=0;
+ imshow(GrayScaleImage); hold on 
+
+
+  % Overlay valid interest points
+    plot(corner_positions(:,1), corner_positions(:,2), 'y.');
+    
+    hold off;
+    
+    F(i)=getframe;
+    
 end
 
-
-markerInserter = vision.MarkerInserter 
-J = step(markerInserter,GrayScaleImage,corner_positions);
+movie(F);
