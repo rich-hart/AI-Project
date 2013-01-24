@@ -1,7 +1,7 @@
 function [ corner_point_mov ] = Corner_Points_Movie( video_data )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
-handle=figure('HandleVisibility','Off');
+handle=figure;
 
 %preallocating memory for image processing
 
