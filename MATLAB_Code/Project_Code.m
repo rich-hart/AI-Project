@@ -1,30 +1,43 @@
 clear all; corner_point_mov={};edge_mov={};
 
-input_video_directory='SampleVideos/';
-output_video_directory='OutputVideos/';
+
+
+input_video_directory='/Users/rich/AIWinter2013/SampleVideos/';
+output_video_directory='/Users/rich/AIWinter2013/OutputVideos/';
 %Loading Video Data into a structure
-input_video = VideoReader(strcat(input_video_directory,'PHP10-LYs.avi'));
-output_video_corner = VideoWriter(strcat(output_video_directory,'CornerVideos','PHP10-LYs.avi'),'Motion JPEG AVI');
-output_video_edge = VideoWriter(strcat(output_video_directory,'EdgeVideos''PHP10-LYs.avi'),'Motion JPEG AVI');
+directory_data=dir(input_video_directory);
 
-%create corner data if does not exist in workspace
-if(isempty(corner_point_mov))
-corner_point_mov=Corner_Points_Movie(input_video);
+for i = 1:min(length(directory_data),3)
+    file_name = directory_data(i).name;
+    if(~(isempty(strfind( lower( file_name),'mp4'))&&isempty(strfind( lower( file_name),'mov'))&&isempty(strfind( lower( file_name),'avi'))))
+        input_video = VideoReader(strcat(input_video_directory,file_name));
+        
+       
+    
+        
+
+        
+        edge_mov=Edge_Movie(input_video);
+        
+            output_video_edge = VideoWriter(strcat(output_video_directory,'EdgeVideos/',file_name),'Motion JPEG AVI');
+        open(output_video_edge);
+       writeVideo(output_video_edge,edge_mov);
+        close(output_video_edge);
+        
+        
+        
+        
+         
+     
+        
+        corner_point_mov=Corner_Points_Movie(input_video);
+%         
+%         
+%    
+         output_video_corner = VideoWriter(strcat(output_video_directory,'CornerVideos/',file_name),'Motion JPEG AVI');
+         open(output_video_corner);
+        writeVideo(output_video_corner,corner_point_mov);
+         close(output_video_corner);
+         str = [i, ' out of ' , min(length(directory_data),4), ' written so far']
+    end
 end
-
-%create edge data if does not exist in workspace
-if(isempty(edge_mov))
-edge_mov=Edge_Movie(input_video);
-end
-
-%play movies
-%PlayMovies(corner_point_mov);
-
-%PlayMovies(edge_mov);
-open(output_video_corner);
-writeVideo(output_video_corner,corner_point_mov);
-close(output_video_corner);
-
-open(output_video_edge);
-writeVideo(output_video_edge,edge_mov);
-close(output_video_edge);
