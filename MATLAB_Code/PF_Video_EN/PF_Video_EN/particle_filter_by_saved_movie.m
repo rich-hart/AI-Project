@@ -2,17 +2,17 @@
 
 F_update = [1 0 1 0; 0 1 0 1; 0 0 1 0; 0 0 0 1];
 
-Npop_particles = 50000;
+Npop_particles = 10000;
 
-Xstd_rgb = 50;
-Xstd_pos = 25;
-Xstd_vec = 5;
+Xstd_rgb = 1;
+Xstd_pos = 1;
+Xstd_vec = 30;
 
 Xrgb_trgt = [255; 255; 255];
 
 %% Loading Movie
 
-vr = VideoReader('CellShape.avi');
+vr = VideoReader('car12.avi');
 
 Npix_resolution = [vr.Width vr.Height];
 Nfrm_movie = floor(vr.Duration * vr.FrameRate);
