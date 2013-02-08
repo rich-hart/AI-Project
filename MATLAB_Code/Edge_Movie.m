@@ -14,6 +14,9 @@ gray_scale_image = rgb2gray(Frame);
 
 %find edges
 bw_edges=edge(gray_scale_image);
+
+bw_edges= imfill(bw_edges ,'holes') ;
+%[BW2,locations]=imfill(bw_edges);
 gray_scale_edge_video=mat2gray(bw_edges);
 gray_scale_edge_video=im2uint8(gray_scale_edge_video);
 %imshow(gray_scale_edge_video);
@@ -22,3 +25,11 @@ end
 %close(h);
 end
 
+% logical([1 0 0 0 0 0 0 0
+%                1 1 1 1 1 0 0 0
+%                1 0 0 0 1 0 1 0
+%                1 0 0 0 1 1 1 0
+%                1 1 1 1 0 1 1 1
+%                1 0 0 1 1 0 1 0
+%                1 0 0 0 1 0 1 0
+%                1 0 0 0 1 1 1 0]);
