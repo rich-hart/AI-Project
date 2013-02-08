@@ -11,7 +11,7 @@ Frame = read(video_data,i);
 %Convert Image to GrayScale
 gray_scale_image = rgb2gray(Frame);
 
-H = fspecial('unsharp');
+H = fspecial('gaussian');
 gray_scale_sharpened_vid = imfilter(gray_scale_image,H,'replicate');
 
 
