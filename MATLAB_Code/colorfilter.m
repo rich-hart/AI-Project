@@ -29,7 +29,7 @@ switch color
                 if (img(i,j,1) > factor && img(i,j,1) == max([img(i,j,1) img(i,j,2) img(i,j,3)]))
                     C(i,j,1:3) = img(i,j,1:3);
                 else
-                    C(i,j,1:3) = (img(i,j,1) * 0.3) + (img(i,j,2) * 0.59) + (img(i,j,3) * 0.11);                    
+                 %   C(i,j,1:3) = (img(i,j,1) * 0.3) + (img(i,j,2) * 0.59) + (img(i,j,3) * 0.11);                    
                 end
             end
         end
@@ -39,7 +39,7 @@ switch color
                 if (img(i,j,2) > factor && img(i,j,2) == max([img(i,j,1) img(i,j,2) img(i,j,3)]))
                     C(i,j,1:3) = img(i,j,1:3);
                 else
-                    C(i,j,1:3) = (img(i,j,1) * 0.3) + (img(i,j,2) * 0.59) + (img(i,j,3) * 0.11);
+                   % C(i,j,1:3) = (img(i,j,1) * 0.3) + (img(i,j,2) * 0.59) + (img(i,j,3) * 0.11);
                 end
             end
         end
@@ -49,7 +49,7 @@ switch color
                 if (img(i,j,3) > factor && img(i,j,3) == max([img(i,j,1) img(i,j,2) img(i,j,3)]))
                     C(i,j,1:3) = img(i,j,1:3);
                 else
-                    C(i,j,1:3) = (img(i,j,1) * 0.3) + (img(i,j,2) * 0.59) + (img(i,j,3) * 0.11);
+                %    C(i,j,1:3) = (img(i,j,1) * 0.3) + (img(i,j,2) * 0.59) + (img(i,j,3) * 0.11);
                 end
             end
         end
