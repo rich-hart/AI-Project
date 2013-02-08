@@ -1,6 +1,6 @@
 clear all; corner_point_mov={};edge_mov={};
 
-
+%NOTES!!! TRY RUNNING THE PROGRAM BACKWARDS TO CATCH CELLS AS THEY GROW
 
 %input_video_directory='/Users/rich/AIWinter2013/SampleVideos/';
 output_video_directory='/Users/rich/AIWinter2013/OutputVideos/';
@@ -57,15 +57,13 @@ output_file_name=strcat(output_video_directory,'DeblurredVideos/',file_name);
 %         writeVideo(output_video_edge,edge_mov);
 %         close(output_video_edge);
         
-              corner_points=Corner_Points(input_video);
-        
-        
+              corner_point_mov = Corner_Points_Movie( input_video );
    
          output_video_corner = VideoWriter(strcat(output_video_directory,'CornerVideos/',file_name),'Motion JPEG AVI');
          open(output_video_corner);
         writeVideo(output_video_corner,corner_point_mov);
          close(output_video_corner);
-         str = [i, ' out of ' , min(length(directory_data),4), ' written so far']
+    
 
     end
 end

@@ -41,12 +41,12 @@ for i = 1:min(length(directory_data),1)
 %          close(output_video_corner);
 %          str = [i, ' out of ' , min(length(directory_data),4), ' written so far']
 
-% deblurred_mov=DeblurImage( input_video );
-% output_file_name=strcat(output_video_directory,'DeblurredVideos/',file_name);
-%  output_video_blur = VideoWriter(output_file_name,'Motion JPEG AVI');
-%         open(output_video_blur);
-%         writeVideo(output_video_blur,deblurred_mov);
-%         close(output_video_blur);
+deblurred_mov=DeblurImage( input_video );
+output_file_name=strcat(output_video_directory,'DeblurredVideos/',file_name);
+ output_video_blur = VideoWriter(output_file_name,'Motion JPEG AVI');
+        open(output_video_blur);
+        writeVideo(output_video_blur,deblurred_mov);
+        close(output_video_blur);
         
           input_video = VideoReader(strcat(output_file_name,'.avi'));
                 
@@ -57,9 +57,7 @@ for i = 1:min(length(directory_data),1)
 %         writeVideo(output_video_edge,edge_mov);
 %         close(output_video_edge);
         
-              corner_points=Corner_Points(input_video);
-        
-        
+              corner_point_mov = Corner_Points_Movie( input_video );
    
          output_video_corner = VideoWriter(strcat(output_video_directory,'CornerVideos/',file_name),'Motion JPEG AVI');
          open(output_video_corner);
