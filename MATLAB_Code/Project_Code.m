@@ -1,5 +1,5 @@
 clear all; corner_point_mov={};edge_mov={};
-run_type=0;
+run_type=6;
 %NOTES!!! TRY RUNNING THE PROGRAM BACKWARDS TO CATCH CELLS AS THEY GROW
 
 %input_video_directory='/Users/rich/AIWinter2013/SampleVideos/';
@@ -79,6 +79,38 @@ for i = 1:min(length(directory_data),1)
             close(output_video_edge);
             
         end
+        
+         if(run_type==5)
+            
+            
+            
+            edge_mov=Edge_Movie_3D_Fill(input_video);
+            
+            output_video_edge = VideoWriter(strcat(output_video_directory,'3DEdgeFill/',file_name),'Motion JPEG AVI');
+            open(output_video_edge);
+            writeVideo(output_video_edge,edge_mov);
+            close(output_video_edge);
+            
+            
+         end
+         
+        if(run_type==6)
+            
+            
+            
+            [X,Y,Z ]=GenerateMesh(input_video);
+            
+            x=X( randsample(length(X),floor(length(X)*.1)));
+z=Z( randsample(length(Z),floor(length(Z)*.1)));
+y=Z( randsample(length(Z),floor(length(Z)*.1)));
+scatter3(x,y,z,1,'.')
+
+            
+           % surf(X,Y,Z);
+            
+            
+        end
+         
         %          str = [i, ' out of ' , min(length(directory_data),4), ' written so far']
         
         % deblurred_mov=DeblurImage( input_video );
