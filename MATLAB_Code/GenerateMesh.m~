@@ -1,17 +1,18 @@
-function [X,Y,Z ] =GenerateMesh( video_data )
+function [x,y,z,c ] =GenerateMesh( video_data )
 
 %UNTITLED9 Summary of this function goes here
 %   Detailed explanation goes here
-x=[];
-y=[];
-z=[];
+total_number_of_pixels= video_data.NumberOfFrames*video_data.Height* video_data.Width;
+x=zeros(total_number_of_pixels,1);
+y=zeros(total_number_of_pixels,1);
+z=zeros(total_number_of_pixels,1);
+c=zeros(total_number_of_pixels,3);
 
-black_white_matrix=false(video_data.Height,video_data.Width,video_data.NumberOfFrames);
-
-for i=1:video_data.NumberOfFrames
+counter=0;
+for k=1:video_data.NumberOfFrames
     
 %Read the frame from the video
-Frame = read(video_data,i);
+Frame = read(video_data,k);
 
 %Convert Image to GrayScale
 gray_scale_image = rgb2gray(Frame);
@@ -19,33 +20,26 @@ gray_scale_image = rgb2gray(Frame);
 %find edges
 bw_edges=edge(gray_scale_image);
 bw_edges=imfill(bw_edges,4,'holes') ;
-black_white_matrix(:,:,i)=bw_edges;
-
-
-end
-
-
-
 for i = 1: video_data.Height
    for j =1: video_data.Width
-       for k = 1:video_data.NumberOfFrames
-          if( black_white_matrix(i,j,k))
-             x=[x;i];
-             y=[y;j];
-             z=[z;k];
-          end
+       if(bw_edges(i,j))
+        x(counter)=i;
+          y(counter)=j;
+           z(counter)=k;
+           color=[Frame(i,j,1),Frame(i,j,2),Frame(i,j,3)];
+           c=[c;color];
+           counter=counter+1;
        end
-   end
+  end
 end
 
-for i=1:video_data.NumberOfFrames
-    
 
-[X,Y,Z] =meshgrid(x,y,z);
+%[X,Y,Z] =meshgrid(x,y,z);
+
+
 
 
 end
-
 end
 
 

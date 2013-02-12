@@ -1,7 +1,6 @@
-function [x,y,z,c ] =GenerateMesh( video_data )
+function [x,y,z,c ]  = GenerateMeshColor( video_data )
+color_to_filter='G';
 
-%UNTITLED9 Summary of this function goes here
-%   Detailed explanation goes here
 total_number_of_pixels= video_data.NumberOfFrames*video_data.Height* video_data.Width;
 
 x=zeros(total_number_of_pixels,1);
@@ -17,14 +16,15 @@ for k=1:video_data.NumberOfFrames
     Frame = read(video_data,k);
     
     %Convert Image to GrayScale
-    gray_scale_image = rgb2gray(Frame);
+
     
-    %find edges
-    bw_edges=edge(gray_scale_image);
-    bw_edges=imfill(bw_edges,4,'holes') ;
+  filtered_color_image=colorfilter(Frame,color_to_filter);
+
+
+    
     for i = 1: video_data.Height
         for j =1: video_data.Width
-            if(bw_edges(i,j))
+            if(filtered_color_image(i,j))
                   counter=counter+1;
                 x(counter)=i;
                 y(counter)=j;

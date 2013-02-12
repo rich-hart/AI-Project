@@ -80,7 +80,7 @@ for i = 1:min(length(directory_data),1)
             
         end
         
-         if(run_type==5)
+        if(run_type==5)
             
             
             
@@ -92,19 +92,30 @@ for i = 1:min(length(directory_data),1)
             close(output_video_edge);
             
             
-         end
-         
+        end
+        
+        %Rendering the movie data in 3d. using edge's 
         if(run_type==6)
             
             
             
-            GenerateMesh(input_video);
+            [X,Y,Z,C ]=GenerateMesh(input_video);
+            k= randsample(length(X),floor(length(X)*.1));
+            x=X( k);
+            y=Y( k);
+            z=Z(k);
+            c=C(k,1:3);
+            colormap(c);
+            color_index=1:length(c);
+             color_index= color_index';
+            scatter3(x,y,z,1,color_index,'.');
             
+            % surf(X,Y,Z);
             
-            
+            %
             
         end
-         
+        
         %          str = [i, ' out of ' , min(length(directory_data),4), ' written so far']
         
         % deblurred_mov=DeblurImage( input_video );

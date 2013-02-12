@@ -1,7 +1,4 @@
-function [x,y,z,c ] =GenerateMesh( video_data )
-
-%UNTITLED9 Summary of this function goes here
-%   Detailed explanation goes here
+function [x,y,z,c ]  = GenerateMeshColor( video_data )
 total_number_of_pixels= video_data.NumberOfFrames*video_data.Height* video_data.Width;
 
 x=zeros(total_number_of_pixels,1);
