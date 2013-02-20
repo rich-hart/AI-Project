@@ -2,7 +2,7 @@
 
 F_update = [1 0 1 0; 0 1 0 1; 0 0 1 0; 0 0 0 1];
 
-Npop_particles = 4000;
+Npop_particles = 1000;
 
 Xstd_rgb = 50;
 Xstd_pos = 25;

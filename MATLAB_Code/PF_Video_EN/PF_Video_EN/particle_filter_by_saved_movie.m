@@ -20,7 +20,7 @@ Xrgb_trgt = [255; 255; 255];
 
 %% Loading Movie
 
-vr = VideoReader('CellShape.avi');
+vr = VideoReader('Cell_Shape_Dynamics.avi');
 % Really cool! When it looses track of a cell if flies off the page!
 Npix_resolution = [vr.Width vr.Height];
 Nfrm_movie = floor(vr.Duration * vr.FrameRate);
