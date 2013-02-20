@@ -31,6 +31,14 @@ seD = strel('diamond',1);
 BWfinal = imerode(BWnobord,seD);
 BWfinal = imerode(BWfinal,seD);
 
+%Remove objects that are less than 100 pixels. 
+%BWfinal = bwareaopen(BWfinal, 100);
+
+CC = bwconncomp(BWfinal);
+
+numPixels = cellfun(@numel,CC.PixelIdxList);
+[biggest,idx] = max(numPixels);
+BWfinal(CC.PixelIdxList{idx}) = 0;
 
 gray_scale_edge_video=mat2gray(BWfinal);
 gray_scale_edge_video=im2uint8(gray_scale_edge_video);
