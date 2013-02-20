@@ -1,5 +1,5 @@
 clear all; corner_point_mov={};edge_mov={};
-run_type=6;
+run_type=7;
 %NOTES!!! TRY RUNNING THE PROGRAM BACKWARDS TO CATCH CELLS AS THEY GROW
 
 %input_video_directory='/Users/rich/AIWinter2013/SampleVideos/';
@@ -122,7 +122,8 @@ for i = 1:min(length(directory_data),1)
             
             
             [X,Y,Z,C ]=GenerateMeshColor(input_video);
-            k= randsample(length(X),floor(length(X)*.1));
+            k=length(X);
+            %k= randsample(length(X),floor(length(X)*.1));
             x=X( k);
             y=Y( k);
             z=Z(k);
@@ -135,7 +136,16 @@ for i = 1:min(length(directory_data),1)
             % surf(X,Y,Z);
             
             %
-            
+%              k= 1:40000;
+% k=k';
+%             x=X( k);
+%             y=Y( k);
+%             z=Z(k);
+%             c=C(k,1:3);
+%             colormap(c);
+%             color_index=1:length(c);
+%              color_index= color_index';
+%             scatter3(x,y,z,1,color_index,'.');
         end
         
         %          str = [i, ' out of ' , min(length(directory_data),4), ' written so far']

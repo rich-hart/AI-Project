@@ -1,5 +1,5 @@
 function [x,y,z,c ]  = GenerateMeshColor( video_data )
-color_to_filter='G';
+color_to_filter='r';
 
 total_number_of_pixels= video_data.NumberOfFrames*video_data.Height* video_data.Width;
 
@@ -25,13 +25,13 @@ for k=1:video_data.NumberOfFrames
     for i = 1: video_data.Height
         for j =1: video_data.Width
             if(filtered_color_image(i,j))
-                  counter=counter+1;
+                counter=counter+1;
                 x(counter)=i;
                 y(counter)=j;
                 z(counter)=k;
-                c(counter,1)=Frame(i,j,1)/256;
-                c(counter,2)=Frame(i,j,2)/256;
-                c(counter,3)=Frame(i,j,3)/256;
+                c(counter,1)=filtered_color_image(i,j,1)/256;
+                c(counter,2)=filtered_color_image(i,j,2)/256;
+                c(counter,3)=filtered_color_image(i,j,3)/256;
               
             end
         end
