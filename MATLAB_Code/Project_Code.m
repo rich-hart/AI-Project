@@ -1,5 +1,5 @@
 clear all; corner_point_mov={};edge_mov={};
-run_type=7;
+run_type=0;
 %NOTES!!! TRY RUNNING THE PROGRAM BACKWARDS TO CATCH CELLS AS THEY GROW
 
 %input_video_directory='/Users/rich/AIWinter2013/SampleVideos/';
@@ -9,7 +9,7 @@ input_video_directory='SampleVideos/';
 directory_data=dir(input_video_directory);
 
 for i = 1:min(length(directory_data),1)
-    file_name = 'Jordan2.mp4';
+    file_name = 'Cell_Shape_Dynamics.mp4';
     if(~(isempty(strfind( lower( file_name),'mp4'))&&isempty(strfind( lower( file_name),'mov'))&&isempty(strfind( lower( file_name),'avi'))))
         input_video = VideoReader(strcat(input_video_directory,file_name));
         
@@ -19,8 +19,8 @@ for i = 1:min(length(directory_data),1)
             
             
             edge_mov=Edge_Movie(input_video);
-            
-            output_video_edge = VideoWriter(strcat(output_video_directory,'EdgeVideos/',file_name),'Motion JPEG AVI');
+            file_path=strcat(output_video_directory,'EdgeVideos/',file_name)
+            output_video_edge = VideoWriter(file_path,'Motion JPEG AVI');
             open(output_video_edge);
             writeVideo(output_video_edge,edge_mov);
             close(output_video_edge);
@@ -127,11 +127,11 @@ for i = 1:min(length(directory_data),1)
             x=X( k);
             y=Y( k);
             z=Z(k);
-            c=C(k,1:3);
-            colormap(c);
+            c=C(1:k,1:3);
+            colormap(C);
             color_index=1:length(c);
              color_index= color_index';
-            scatter3(x,y,z,1,color_index,'.');
+            scatter3(X,Y,Z,1,color_index,'.');
             
             % surf(X,Y,Z);
             

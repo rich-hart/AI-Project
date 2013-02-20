@@ -16,7 +16,7 @@ gray_scale_image = rgb2gray(Frame);
 [~, threshold]=edge(gray_scale_image, 'sobel');
 
 fudgeFactor = .5;
-bw_edges = edge(I,'sobel', threshold * fudgeFactor);
+bw_edges = edge(gray_scale_image,'sobel', threshold * fudgeFactor);
 
 %bw_edges= imfill(bw_edges,4 ,'holes') ;
 %[BW2,locations]=imfill(bw_edges);
