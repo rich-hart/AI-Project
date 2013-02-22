@@ -1,8 +1,13 @@
+
+r=1;
 x = -pi:.1:pi;
 y = sin(x);
 
 for k = 1:1
-	plot(x,y)
+	plot(x,y,'o',...
+    'MarkerEdgeColor','b',...
+'MarkerFaceColor','b',...
+'MarkerSize',10)
 	axis equal
 	M(k) = getframe;
 end
