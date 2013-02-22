@@ -1,18 +1,19 @@
+% 
+% r=1;
+% x = -pi:.1:pi;
+% y = sin(x);
 
-r=1;
-x = -pi:.1:pi;
-y = sin(x);
-
-for k = 1:1
-	plot(x,y,'o',...
+for k = 1:100
+	plot(k,k,'o',...
     'MarkerEdgeColor','b',...
 'MarkerFaceColor','b',...
 'MarkerSize',10)
 	axis equal
+    axis([0 100 0 100])
 	M(k) = getframe;
 end
 
-movie(M,1)
+movie(M,1);
 % 
 % r=1;
 % 
