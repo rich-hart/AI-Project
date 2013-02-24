@@ -1,19 +1,26 @@
+
+
+
+
 % 
 % r=1;
 % x = -pi:.1:pi;
 % y = sin(x);
+% 
+% for k = 1:100
+% 	plot(k,k,'o',...
+%     'MarkerEdgeColor','b',...
+% 'MarkerFaceColor','b',...
+% 'MarkerSize',10)
+% 	axis equal
+%     axis([0 100 0 100])
+% 	M(k) = getframe;
+% end
 
-for k = 1:100
-	plot(k,k,'o',...
-    'MarkerEdgeColor','b',...
-'MarkerFaceColor','b',...
-'MarkerSize',10)
-	axis equal
-    axis([0 100 0 100])
-	M(k) = getframe;
-end
+cell_path=GeneratePathPoints(0,0,1,1,100);
 
-movie(M,1);
+%M= Animation_Of_Cell_Path(0,0,1,1,10);
+%movie(M,2);
 % 
 % r=1;
 % 
