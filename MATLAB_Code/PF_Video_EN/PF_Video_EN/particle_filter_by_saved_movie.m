@@ -10,7 +10,7 @@ F_update = [1 0 1 0; 0 1 0 1; 0 0 1 0; 0 0 0 1];
 %Notice that size of particles corrisponds to particle discrtibution
 % fill holes before!
 
-Npop_particles = 1000;
+Npop_particles = 100;
 
 Xstd_rgb = 1;
 Xstd_pos = 1;
