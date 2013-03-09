@@ -10,13 +10,14 @@ F_update = [1 0 1 0; 0 1 0 1; 0 0 1 0; 0 0 0 1];
 %Notice that size of particles corrisponds to particle discrtibution
 % fill holes before!
 
-Npop_particles = 1000;
+Npop_particles = 100;
 
 Xstd_rgb = 1;
 Xstd_pos = 1;
 Xstd_vec = 1;
 
 Xrgb_trgt = [255; 255; 255];
+
 
 %% Loading Movie
 
@@ -29,7 +30,12 @@ Nfrm_movie = floor(vr.Duration * vr.FrameRate);
 
 X = create_particles(Npix_resolution, Npop_particles);
 
-for k = 1:Nfrm_movie
+%% Save File Location stuff
+Nfrm_movie=10;
+new_mov(1:Nfrm_movie) = struct('cdata',[],'colormap',[]);
+
+output_image_directory='/Users/richardhart/AIProject/TempImageFolder/';
+for k = 1: Nfrm_movie
     
     % Getting Image
     Y_k = read(vr, k);
@@ -44,8 +50,12 @@ for k = 1:Nfrm_movie
     X = resample_particles(X, L);
 
     % Showing Image
+    
+    image_number=num2str(k);
+    
     show_particles(X, Y_k); 
 %    show_state_estimated(X, Y_k);
 
 end
 
+%movie(new_mov,1,30);
