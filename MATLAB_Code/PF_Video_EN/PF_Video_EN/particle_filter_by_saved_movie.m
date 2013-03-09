@@ -32,9 +32,12 @@ X = create_particles(Npix_resolution, Npop_particles);
 
 %% Save File Location stuff
 Nfrm_movie=10;
-new_mov(1:Nfrm_movie) = struct('cdata',[],'colormap',[]);
+remaining_cells_movie(1:Nfrm_movie) = struct('cdata',[],'colormap',[]);
+tracked_cells_movie(1:Nfrm_movie) = struct('cdata',[],'colormap',[]);
 
-output_image_directory='/Users/richardhart/AIProject/TempImageFolder/';
+remaining_movie_directory='/Users/richardhart/AIProject/remaining_cells_movie/';
+tracked_movie_directory='/Users/richardhart/AIProject/tracked_cells_movie/';
+
 for k = 1: Nfrm_movie
     
     % Getting Image
@@ -53,9 +56,29 @@ for k = 1: Nfrm_movie
     
     image_number=num2str(k);
     
-    new_mov(k)=show_particles(X, Y_k); 
+   [remaining_cells_frame,tracked_cells_frame]= show_particles(X, Y_k); 
 %    show_state_estimated(X, Y_k);
 
-end
+remaining_cells_movie(k)=remaining_cells_frame;
 
-movie(new_mov,1,30);
+tracked_cells_movie(k)=tracked_cells_frame;
+
+
+
+end
+file_path=strcat(remaining_movie_directory,'remaining');
+output_video_handle=VideoWriter(file_path,'Motion JPEG AVI');
+
+
+            open(output_video_handle);
+            writeVideo(output_video_handle,remaining_cells_movie);
+            close(output_video_handle);
+            
+            file_path=strcat(tracked_movie_directory,'tracked');
+output_video_handle=VideoWriter(file_path,'Motion JPEG AVI');
+
+
+            open(output_video_handle);
+            writeVideo(output_video_handle,tracked_cells_movie);
+            close(output_video_handle);
+%movie(new_mov,1,30);
