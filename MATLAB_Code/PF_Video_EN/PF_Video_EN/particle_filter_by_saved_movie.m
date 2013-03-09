@@ -18,10 +18,13 @@ Xstd_vec = 1;
 
 Xrgb_trgt = [255; 255; 255];
 
-
+remaining_movie_directory='/Users/richardhart/AIProject/remaining_cells_movie/';
+tracked_movie_directory='/Users/richardhart/AIProject/tracked_cells_movie/';
+tic;
+for tracker_number= 0:2
 %% Loading Movie
 
-vr = VideoReader('Cell_Shape_Dynamics.avi');
+vr = VideoReader(strcat(remaining_movie_directory,num2str(tracker_number),'.avi'));
 % Really cool! When it looses track of a cell if flies off the page!
 Npix_resolution = [vr.Width vr.Height];
 Nfrm_movie = floor(vr.Duration * vr.FrameRate);
@@ -35,8 +38,7 @@ Nfrm_movie=10;
 remaining_cells_movie(1:Nfrm_movie) = struct('cdata',[],'colormap',[]);
 tracked_cells_movie(1:Nfrm_movie) = struct('cdata',[],'colormap',[]);
 
-remaining_movie_directory='/Users/richardhart/AIProject/remaining_cells_movie/';
-tracked_movie_directory='/Users/richardhart/AIProject/tracked_cells_movie/';
+
 
 for k = 1: Nfrm_movie
     
@@ -66,7 +68,7 @@ tracked_cells_movie(k)=tracked_cells_frame;
 
 
 end
-file_path=strcat(remaining_movie_directory,'remaining');
+file_path=strcat(remaining_movie_directory,num2str(tracker_number+1));
 output_video_handle=VideoWriter(file_path,'Motion JPEG AVI');
 
 
@@ -74,11 +76,13 @@ output_video_handle=VideoWriter(file_path,'Motion JPEG AVI');
             writeVideo(output_video_handle,remaining_cells_movie);
             close(output_video_handle);
             
-            file_path=strcat(tracked_movie_directory,'tracked');
+            file_path=strcat(tracked_movie_directory,num2str(tracker_number+1));
 output_video_handle=VideoWriter(file_path,'Motion JPEG AVI');
 
 
             open(output_video_handle);
             writeVideo(output_video_handle,tracked_cells_movie);
             close(output_video_handle);
+end
+toc
 %movie(new_mov,1,30);

@@ -27,8 +27,8 @@ tracked_cells_bw=bwselect(BW,c_values,r_values,4);
 remaining_cells_bw=BW-tracked_cells_bw;
 remaining_cells_gray=mat2gray(remaining_cells_bw);
 remaining_cells_gray=im2uint8(remaining_cells_gray);
-figure(2);
-imshow(remaining_cells_gray);
+%figure(2);
+%imshow(remaining_cells_gray);
 remaining_cells_frame=im2frame(remaining_cells_gray,gray(256));
 
 
