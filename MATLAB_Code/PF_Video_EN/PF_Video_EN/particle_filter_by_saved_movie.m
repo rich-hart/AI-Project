@@ -21,7 +21,7 @@ Xrgb_trgt = [255; 255; 255];
 remaining_movie_directory='/Users/richardhart/AIProject/remaining_cells_movie/';
 tracked_movie_directory='/Users/richardhart/AIProject/tracked_cells_movie/';
 tic;
-for tracker_number= 0:2
+for tracker_number= 0:3
 %% Loading Movie
 
 vr = VideoReader(strcat(remaining_movie_directory,num2str(tracker_number),'.avi'));
@@ -34,7 +34,7 @@ Nfrm_movie = floor(vr.Duration * vr.FrameRate);
 X = create_particles(Npix_resolution, Npop_particles);
 
 %% Save File Location stuff
-Nfrm_movie=10;
+Nfrm_movie=min([20*10,Nfrm_movie]);
 remaining_cells_movie(1:Nfrm_movie) = struct('cdata',[],'colormap',[]);
 tracked_cells_movie(1:Nfrm_movie) = struct('cdata',[],'colormap',[]);
 

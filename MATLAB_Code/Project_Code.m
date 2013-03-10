@@ -3,7 +3,7 @@ run_type=0;
 %NOTES!!! TRY RUNNING THE PROGRAM BACKWARDS TO CATCH CELLS AS THEY GROW
 
 %input_video_directory='/Users/rich/AIWinter2013/SampleVideos/';
-output_video_directory='/Users/richardhart/AIProject/OutputVideos/';
+output_video_directory='/Users/richardhart/AIProject/remaining_cells_movie/';
 %Loading Video Data into a structure
 input_video_directory='SampleVideos/';
 directory_data=dir(input_video_directory);
@@ -19,7 +19,7 @@ for i = 1:min(length(directory_data),1)
             
             
             edge_mov=Edge_Movie(input_video);
-            file_path=strcat(output_video_directory,'EdgeVideos/',file_name)
+            file_path=strcat(output_video_directory,num2str(0))
             output_video_edge = VideoWriter(file_path,'Motion JPEG AVI');
             open(output_video_edge);
             writeVideo(output_video_edge,edge_mov);

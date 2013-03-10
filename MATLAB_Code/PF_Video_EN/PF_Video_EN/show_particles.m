@@ -2,19 +2,19 @@ function [remaining_cells_frame,tracked_cells_frame]= show_particles(particle_lo
 
 
 
-h=figure(1);
-image(tracked_image)
-title('+++ Showing Particles +++')
-
-hold on
-
 c_values=particle_locations(2,:);
-r_values=particle_locations(1,:);
-plot(c_values, r_values, '.')
-hold off
+ r_values=particle_locations(1,:);
+% h=figure(1);
+% image(tracked_image)
+% title('+++ Showing Particles +++')
+% 
+% hold on
+% 
 
-drawnow
-
+% plot(c_values, r_values, '.')
+% hold off
+% 
+% drawnow
 
 
 
