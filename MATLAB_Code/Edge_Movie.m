@@ -4,6 +4,7 @@ function [ edge_mov ] = Edge_Movie( video_data )
 %h=figure('HandleVisibility','off');
 
 number_of_frames=video_data.NumberOfFrames;
+number_of_frames=200;
 edge_mov(1:number_of_frames) = struct('cdata',[],'colormap',[]);
 
 for i=1:number_of_frames
@@ -11,14 +12,19 @@ for i=1:number_of_frames
 %Read the frame from the video
 Frame = read(video_data,i);
 
+
+
 %Convert Image to GrayScale
 gray_scale_image = rgb2gray(Frame);
+
 
 %find edges
 [~, threshold]=edge(gray_scale_image, 'sobel');
 
 fudgeFactor = .1;
 bw_edges = edge(gray_scale_image,'sobel', threshold * fudgeFactor);
+
+
 
 %bw_edges= imfill(bw_edges,4 ,'holes') ;
 %[BW2,locations]=imfill(bw_edges);
@@ -44,8 +50,7 @@ BWfinal = bwareaopen(BWfinal, 50);
 
 gray_scale_edge_video=mat2gray(BWfinal);
 gray_scale_edge_video=im2uint8(gray_scale_edge_video);
-figure(1);
-imshow(gray_scale_edge_video);
+
     edge_mov(i)= im2frame(gray_scale_edge_video,gray(256));
 end
 %close(h);
